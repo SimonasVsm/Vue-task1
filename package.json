@@ -1,16 +1,19 @@
 {
-  "name": "vue2-vite",
-  "version": "0.0.0",
-  "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "serve": "vite preview"
-  },
-  "dependencies": {
-    "vite-plugin-vue2": "^1.4.0",
-    "vue": "^2.6.12"
-  },
-  "devDependencies": {
-    "vite": "^2.0.5"
-  }
+	"name": "vue2-vite",
+	"version": "0.0.0",
+	"scripts": {
+		"json-server": "json-server src/api/db.json --port 3004",
+		"dev": "vite",
+		"build": "vite build",
+		"serve": "vite preview"
+	},
+	"dependencies": {
+		"json-server": "^0.16.3",
+		"vite-plugin-vue2": "^1.4.0",
+		"vue": "^2.6.12",
+		"vue-types": "^2.0.3"
+	},
+	"devDependencies": {
+		"vite": "^2.0.5"
+	}
 }

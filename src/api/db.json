@@ -1,0 +1,94 @@
+{
+  "shop": [
+    {
+      "title": "Cats",
+      "price": "123",
+      "url": "https://placeimg.com/640/480/any/12",
+      "id": 23
+    },
+    {
+      "title": "Testing edits",
+      "price": "12",
+      "url": "https://placeimg.com/640/480/any/41",
+      "id": 25
+    },
+    {
+      "title": "edit",
+      "price": "12",
+      "url": "https://placeimg.com/640/480/any/412",
+      "id": 26
+    },
+    {
+      "title": "EDIT",
+      "price": "1231",
+      "url": "https://placeimg.com/640/480/any/212",
+      "id": 31
+    },
+    {
+      "title": "ASD",
+      "price": "123",
+      "url": "https://placeimg.com/640/480/any/77",
+      "id": 33
+    },
+    {
+      "title": "jekp",
+      "price": "123",
+      "url": "https://placeimg.com/640/480/any/412",
+      "id": 34
+    },
+    {
+      "title": "lastestest",
+      "price": "1233",
+      "url": "https://placeimg.com/640/480/any/773",
+      "id": 37
+    },
+    {
+      "title": "Tv",
+      "price": "250",
+      "url": "https://placeimg.com/640/480/any/tv",
+      "id": 38
+    },
+    {
+      "title": "tata auto India",
+      "price": "123",
+      "url": "https://placeimg.com/640/480/any/4re",
+      "id": 42
+    },
+    {
+      "title": "Pries paskutine",
+      "price": "24",
+      "url": "https://placeimg.com/640/480/any/de",
+      "id": 43
+    },
+    {
+      "title": "Kaunasewew",
+      "price": "123123",
+      "url": "https://placeimg.com/640/480/any/de",
+      "id": 44
+    }
+  ],
+  "carousel": [
+    {
+      "title": "Title 1",
+      "price": 123,
+      "url": "https://placeimg.com/640/480/any/212",
+      "id": 1
+    },
+    {
+      "id": 2,
+      "title": "Carousel 2",
+      "url": "https://placeimg.com/640/480/any/2"
+    },
+    {
+      "id": 3,
+      "title": "Carousel 3",
+      "url": "https://placeimg.com/640/480/any/3"
+    },
+    {
+      "title": "Title 8",
+      "price": 120,
+      "url": "https://placeimg.com/640/480/any/212",
+      "id": 4
+    }
+  ]
+}
