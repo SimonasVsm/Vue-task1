@@ -45,3 +45,22 @@ import VButton from '../VButton/VButton.vue'
    }
  }
 </script>
+
+
+<style scoped>
+.items-container__item {
+	border: 1px solid gray;
+	min-height: 10rem;
+	min-width: 10rem;
+	object-fit: contain;
+}
+
+.item {
+	max-width: 100%;
+}
+
+.information {
+	display: flex;
+	justify-content: space-around;
+}
+</style>

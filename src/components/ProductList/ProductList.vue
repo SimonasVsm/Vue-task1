@@ -1,6 +1,6 @@
 <template>
 
-  <ul> 
+  <ul class="items-container"> 
     <ProductListItem v-for="item in items" 
     :id="item.id" 
     :key="item.id"
@@ -73,3 +73,15 @@ export default {
   }
 }
 </script>
+
+
+<style scoped>
+.items-container {
+	position: relative;
+	margin: var(--spacing-md);
+	display: grid;
+	grid-template-rows: 1fr;
+	grid-template-columns: 1fr;
+	gap: var(--spacing-xs);
+}
+</style>

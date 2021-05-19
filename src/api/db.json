@@ -13,7 +13,7 @@
       "id": 25
     },
     {
-      "title": "edit",
+      "title": "HehEH",
       "price": "12",
       "url": "https://placeimg.com/640/480/any/412",
       "id": 26
@@ -43,28 +43,18 @@
       "id": 37
     },
     {
-      "title": "Tv",
-      "price": "250",
-      "url": "https://placeimg.com/640/480/any/tv",
-      "id": 38
-    },
-    {
-      "title": "tata auto India",
+      "title": "test",
       "price": "123",
       "url": "https://placeimg.com/640/480/any/4re",
       "id": 42
     },
     {
-      "title": "Pries paskutine",
-      "price": "24",
+      "title": {
+        "isTrusted": true
+      },
+      "price": "12",
       "url": "https://placeimg.com/640/480/any/de",
       "id": 43
-    },
-    {
-      "title": "Kaunasewew",
-      "price": "123123",
-      "url": "https://placeimg.com/640/480/any/de",
-      "id": 44
     }
   ],
   "carousel": [
