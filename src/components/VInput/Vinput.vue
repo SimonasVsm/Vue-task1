@@ -1,26 +1,21 @@
 <template>
   <input 
-  :id="id" 
-  :name="name" 
-  :type="type" 
-  :placeholder="placeholder" 
+  type="text"
   :value="value"
-  :input="$emit('input', $event.target.value)"
+  @input="updateValue($event.target.value)"
   >
 </template>
 
 <script>
-import t from 'vue-types'
 
 export default {
-  props: {
-    value: t.string,
-    type: t.string.def('text'),
-    placeholder: t.string,
-    id: t.string,
-    name: t.string,
-    itemTitle: t.string
+  props: ['value'],
+  methods: {
+    updateValue(value) {
+      this.$emit("input", value)
+    }
   }
+
 }
 </script>
 

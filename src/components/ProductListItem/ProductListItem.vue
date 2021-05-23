@@ -12,6 +12,7 @@
     <p class="price">{{price}}</p>
   </div>
   <div class="action-buttons">
+    <!-- Do I realy need data-id? -->
     <VButton @click="handleEdit" :data-id="id" text="Edit"/>
     <VButton @click="handleDelete" :data-id="id" text="Delete" />
   </div>
@@ -21,6 +22,8 @@
 <script>
 import t from 'vue-types'
 import VButton from '../VButton/VButton.vue'
+
+
  export default {
 	components: { VButton },
    props: {
@@ -30,18 +33,12 @@ import VButton from '../VButton/VButton.vue'
      price: t.string,
    },
    methods: {
-     handleEdit: function(){
+     handleEdit(){
        this.$emit('editing-item', this.id)
      },
-     handleDelete:  async function(){
-       if(confirm('Are you sure?')) {
-          const response = await fetch(`/api/shop/${this.id}`, {
-         method: 'DELETE'
-       })
-       this.$emit('deleted-item', this.id)
-       }
-        
-     }
+     handleDelete(){
+        this.$emit('delete-item', this.id)
+     },
    }
  }
 </script>
