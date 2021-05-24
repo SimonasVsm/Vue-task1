@@ -1,33 +1,25 @@
 export function deleteData(path, id) {
-	return fetch(`/${path}/${id}`, {
+	return fetch(`/api/${path}/${id}`, {
 		method: 'DELETE',
 	})
 }
 
-export function putData(path, item) {
-	return fetch(`/${path}/${item.id}`, {
+export function putData(path, body) {
+	return fetch(`api/${path}`, {
 		method: 'PUT',
 		headers: {
 			'Content-Type': 'application/json',
 		},
-		body: JSON.stringify({
-			title: item.title,
-			price: item.price,
-			url: item.url,
-		}),
+		body,
 	})
 }
 
-export function postData(path, item) {
-	return fetch(`/${path}`, {
+export function postData(path, body) {
+	return fetch(`/api/${path}`, {
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json',
 		},
-		body: JSON.stringify({
-			title: item.title,
-			price: item.price,
-			url: item.url,
-		}),
+		body,
 	})
 }

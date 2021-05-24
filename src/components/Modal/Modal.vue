@@ -1,9 +1,10 @@
 <template>
-    <div class="modal" id="exampleModal">
+ <div class="overlay">
+  <div class="modal" id="exampleModal">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div id="modal-header" class="modal-header">
-        <VButton @click="handleClose" text="X"/>
+        <VButton class="button-small" @click="handleClose" text="X"/>
         <slot name="header"></slot>
       </div>
       <div id="modal-body" class="modal-body">
@@ -15,15 +16,18 @@
     </div>
   </div>
 </div>
+ </div>
+   
 </template>
 
 <script>
-import t from 'vue-types'
-import VButton from '../VButton/VButton.vue'
-import CustomInput from '../VInput/custom-input.vue'
+import t from "vue-types"
+
+import VButton from "../VButton/VButton.vue"
+
 
 export default {
-	components: { VButton,  CustomInput },
+  components: { VButton },
   props: {
     title: t.string,
     buttonText: t.string,
@@ -41,50 +45,45 @@ export default {
   },
 
   methods: {
-     handleClose(){
-       this.$emit('close-modal')
+    handleClose(){
+      this.$emit("close-modal")
     },
+  },
+  mounted () {
+    document.body.classList.add("fixed")
+  },
+  destroyed () {
+    document.body.classList.remove("fixed")
   }
 }
 </script>
 
 <style scoped>
-/* .modal-content {
-	height: 275px;
-	padding: var(--spacing-md);
-	width: 300px;
-	background: hsl(0deg 2% 65%);
+
+.overlay {
+	position: absolute;
+	width: 100%;
+	height: 100vh;
+	overflow-y: hidden;
+	z-index: 100;
+	background: rgba(0, 0, 0, 0.5);
 	display: flex;
-	border-radius: 2rem;
-	flex-direction: column;
-	justify-content: space-between;
+	justify-content: center;
+	align-items: center;
+}
+
+.modal-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  background: var(--white);
 }
 
 .modal-header {
-	display: flex;
-	justify-content: space-between;
+  display: flex;
+  flex-direction: row-reverse;
+  width: 100%;
+  justify-content: space-between;
 }
-
-.modal-title {
-	margin: 0;
-	font-size: inherit;
-}
-
-.modal-form {
-	display: flex;
-	flex-direction: column;
-}
-
-.modal-form__item {
-	padding: var(--spacing-xs);
-}
-
-.modal-footer {
-	display: flex;
-	justify-content: space-around;
-}
-
-.modal-btn {
-	padding: var(--spacing-xs);
-} */
 </style>

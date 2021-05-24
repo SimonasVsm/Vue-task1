@@ -38,7 +38,7 @@
     <div slot="modal-footer"> 
        <template v-if="action === 'Deleting'">
          <VButton @click="handleClose" text="Cancel"/>
-        <VButton  @click="handleDelete" text="Delete"/>
+        <VButton class="button-delete"  @click="handleDelete" text="Delete"/>
       </template>
     </div>
     </Modal>
@@ -49,15 +49,14 @@
 </template>
 
 <script>
-import Modal from '../Modal/Modal.vue'
-import ProductListItem from '../ProductListItem/ProductListItem.vue'
-import VButton from '../VButton/VButton.vue'
-import AddEditForm from '../AddEditForm/AddEditForm.vue'
-
-// TODO Add - add to favourites feature that will add photo to carousel  
+import Modal from "../Modal/Modal.vue"
+import ProductListItem from "../ProductListItem/ProductListItem.vue"
+import VButton from "../VButton/VButton.vue"
+import AddEditForm from "../AddEditForm/AddEditForm.vue"
+import {deleteData} from "../../api/apiCalls"
 
 export default {
-	components: { ProductListItem, Modal, VButton, 'add-edit-form': AddEditForm },
+  components: { ProductListItem, Modal, VButton, "add-edit-form": AddEditForm },
   data() {
     return {
       items: [],
@@ -72,9 +71,8 @@ export default {
  
     async handleDelete () {
       const oldDtata = [...this.items]
-       const response = await fetch(`/api/shop/${this.itemToDeleteId}`, {
-         method: 'DELETE'
-      })
+      deleteData("shop", `${this.itemToDeleteId}`)
+        
       const newData = oldDtata.filter(item => item.id !== this.itemToDeleteId)
       this.items = newData
       this.itemToDeleteId = null
@@ -90,7 +88,7 @@ export default {
       const response =  await fetch(`/api/shop/${e}`) 
       const data = await response.json()
       this.item = data
-      this.action = 'Editing'
+      this.action = "Editing"
       this.showModal = !this.showModal
     },
     handleClose(){
@@ -102,14 +100,10 @@ export default {
   
       this.items = newData
     },
-
-    handleUpdate(){
-      console.log(e)
-    },
   },
   
- async mounted (){
-    const response = await fetch('/api/shop')
+  async mounted (){
+    const response = await fetch("/api/shop")
     const data = await response.json()
     this.items = [...this.items, ...data]
   }
@@ -124,6 +118,19 @@ export default {
 	display: grid;
 	grid-template-rows: 1fr;
 	grid-template-columns: 1fr;
-	gap: var(--spacing-xs);
+	gap: var(--spacing-md);
 }
+
+@media (min-width: 688px) {
+	.items-container {
+		grid-template-columns: repeat(2, 1fr);
+	}
+}
+@media (min-width: 992px) {
+	.items-container {
+		grid-template-columns: repeat(4, 1fr);
+	}
+}
+
+
 </style>

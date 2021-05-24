@@ -2,32 +2,26 @@
   <div class="input-group">
     <label
     v-if="labelText"
-    :id="labetId"
+    :id="labelId"
     class="control"
-    >{{labelText}}
-    <span
+    >{{labelText}}<sup
     v-if="required"
-
     class="text-danger"
-    >*</span>
+    >*</sup>
     </label>
     <slot name="input" />
-    <!-- <input 
-      :type="type"
-      :id="id"
-    /> -->
+  
   </div>
 </template>
 
 <script>
-import t from 'vue-types'
+import t from "vue-types"
 
 export default {
-  // komponentas turetu gauti propsus susijusius su error is tevinio elemento
   props: {
-    // type: t.string.def('text'),
     labelText: t.string,
-    // id: t.string 
+    labelId: t.string,
+    required: t.bool.def(true)
   }
 }
 </script>

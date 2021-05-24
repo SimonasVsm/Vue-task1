@@ -10,6 +10,7 @@
 	},
 	"dependencies": {
 		"json-server": "^0.16.3",
+		"vee-validate": "^2.2.15",
 		"vite-plugin-vue2": "^1.4.0",
 		"vue": "^2.6.12",
 		"vue-types": "^2.0.3"
@@ -17,6 +18,8 @@
 	"devDependencies": {
 		"@rollup/plugin-eslint": "^8.0.1",
 		"@vue/cli-service": "^4.5.12",
+		"eslint": "^7.27.0",
+		"eslint-plugin-vue": "^7.9.0",
 		"vite": "^2.0.5"
 	}
 }
