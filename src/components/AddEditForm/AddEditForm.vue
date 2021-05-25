@@ -1,39 +1,87 @@
 <template>
-<div>
-  <form class="form-container">
-    <input-group labelId="title" labelText="Title">
-      <template class="input-error-block" v-slot:input>
-        <input class="input" v-validate="'required'" v-model="title" name="title" placeholder="Enter the title"  />
-        <span class="error-message">{{ errors.first('title') }}</span>
+  <div>
+    <form class="form-container">
+      <input-group
+        label-id="title"
+        label-text="Title"
+      >
+        <template
+          class="input-error-block"
+        >
+          <input
+            v-model="title"
+            v-validate="'required'"
+            class="input"
+            name="title"
+            placeholder="Enter the title"
+          >
+          <span class="error-message">{{ errors.first('title') }}</span>
+        </template>
+      </input-group>
+      <input-group
+        label-id="price"
+        label-text="Price"
+      >
+        <template>
+          <input
+            v-model="price"
+            v-validate="'required|decimal'"
+            class="input"
+            name="price"
+            placeholder="Enter the price"
+          >
+          <span class="error-message">{{ errors.first('price') }}</span>
+        </template>
+      </input-group>
+      <input-group
+        label-id="url"
+        label-text="Url"
+      >
+        <template>
+          <input
+            v-model="url"
+            v-validate="'required'"
+            class="input"
+            name="url"
+            placeholder="Enter the url"
+          >
+          <span class="error-message"> {{ errors.first('url') }}</span>
+        </template>
+      </input-group>
+    </form>
+    <div class="form-buttons"> 
+      <template v-if="item.id">
+        <v-button
+          class="button-delete"
+          @click="$emit('close')"
+        >
+          Cancel Edit
+        </v-button>
+        <v-button
+          class="button-edit"
+          :disabled="buttonDisabled"
+          @click="handleEditSave"
+        >
+          Save Edit
+        </v-button>
       </template>
-    </input-group>
-    <input-group labelId="price" labelText="Price">
-      <template v-slot:input>
-        <input class="input" v-validate="'required|decimal'" v-model="price" name="price"  placeholder="Enter the price"  />
-         <span class="error-message">{{ errors.first('price') }}</span>
-      </template>
-    </input-group>
-    <input-group labelId="url" labelText="Url">
-     <template v-slot:input>
-        <input class="input" v-validate="'required'" v-model="url" name="url" placeholder="Enter the url"  />
-         <span class="error-message"> {{ errors.first('url') }}</span>
-      </template>
-    </input-group>
-  
-  </form>
-  <div class="form-buttons"> 
-       <template v-if="formAction === 'Editing'">
-         <VButton class="button-delete"  @click="handleClose" text="Cancel Edit"/>
-        <VButton class="button-edit" :disable="buttonDisabled"  @click="handleEditSave" text="Save Edit"/>
-      </template>
-      <template v-else-if="formAction === 'Saving'">
-        <VButton class="button-delete" @click="handleClose" text="Cancel"/>
-        <VButton class="button-edit"  @click="handleSave" text="Save Item"/>
+      <template v-else>
+        <v-button
+          class="button-delete"
+          @click="$emit('close')"
+        >
+          Cancel
+        </v-button>
+        <v-button
+          class="button-edit"
+          :disabled="buttonDisabled"
+          @click="handleSave"
+        >
+          Save Item
+        </v-button>
       </template>
     </div>
-   
-</div>
-  
+  </div>
 </template>
 
 <script>
@@ -45,7 +93,7 @@ import VButton from "../VButton/VButton.vue"
 
 export default {
   components: {
-    "input-group": InputGroup,
+    InputGroup,
     VButton,
   },
   props: {
@@ -66,7 +114,8 @@ export default {
   computed: {
     formErrors () {
       return this.$validator.errors
-    }
+    },
+  
   },
   watch: {
     item: {
@@ -99,15 +148,11 @@ export default {
           this.buttonDisabled = false
         }
       },
-
       deep:true 
     }
   },
   methods: {
-    handleClose(){
-      this.$emit("close-modal")
-    },
-    async handleEditSave (){
+     async handleEditSave (){
       const newData = {
         title: this.title,
         price: this.price,
@@ -116,16 +161,17 @@ export default {
       }
 
       const response = await putData(`shop/${this.id}`, JSON.stringify(newData))
-
-      const data = await response.json()
-      this.$emit("save-edit", data)
-      this.$emit("close-modal")
-
+      
+      if (typeof response === 'string') {
+        this.$emit("close")
+      } else {
+      this.$emit("save-edit", response)
+      this.$emit("close")
+      }
     },
   }
 }
 </script>
-
 
 <style scoped>
 
@@ -133,6 +179,4 @@ export default {
   font-size: .6rem;
   color: red;
 }
-
-
 </style>
