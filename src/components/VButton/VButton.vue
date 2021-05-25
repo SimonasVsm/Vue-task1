@@ -1,6 +1,9 @@
 <template>
-  <button class="button" v-on="$listeners" :bisable="disable"  >
-      {{text}}
+  <button
+    class="button"
+    v-on="$listeners"
+  >
+    <slot />
   </button>
 </template>
 
@@ -10,8 +13,6 @@ import t from "vue-types"
 export default {
   props: {
     text: t.string,
-    disable: t.bool.def(false)
-  }
-    
+  }  
 }
 </script>

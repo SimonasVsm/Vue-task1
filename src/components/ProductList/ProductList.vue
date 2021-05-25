@@ -1,51 +1,55 @@
 <template>
-
   <ul class="items-container"> 
-    <ProductListItem v-for="item in items" 
-    :id="item.id" 
-    :key="item.id"
-    :title="item.title" 
-    :url="item.url"
-    :price="item.price"
-     @delete-item="openDeleteWindow"
-     @editing-item="openEditWindow"
+    <ProductListItem
+      v-for="item in items" 
+      :key="item.id"
+      :item="item"
+    
+      @delete-item="openDeleteWindow"
+      @edit-item="openEditWindow"
     />
-      <Modal 
-     v-if="showModal"
-    :initialTitle="item.title"
-    :initialPrice="item.price"
-    :initialUrl="item.url"
-    :itemId="item.id"
-    :title="action"
-    @close-modal="handleClose"
+    <Modal 
+      v-if="showModal"
+      :initial-title="item.title"
+      :initial-price="item.price"
+      :initial-url="item.url"
+      :item-id="item.id"
+      :title="action"
+      @close="handleClose"
     >
-    <div slot="header">
-      <p>{{action}}</p>
-    </div>
-    <div  slot="modal-body">
-      <template v-if="action === 'Deleting'">
-        <p>Deleted item will be lost!</p>
+      <div slot="header">
+        <p>{{ action }}</p>
+      </div>
+      <template slot="body">
+        <template v-if="action === 'Deleting'">
+          <p>Deleted item will be lost!</p>
+        </template>
+        <template v-else>
+          <add-edit-form 
+            :action="action" 
+            :item="item"
+            @close="handleClose"
+            @save-edit="saveEditedItem"
+          />
+        </template>
       </template>
-      <template v-else>
-       <add-edit-form 
-       :action="action" 
-       :item="item"
-       @close-modal="handleClose"
-       @save-edit="saveEditedItem"
-       ></add-edit-form>
-      </template>
-    </div>
-    <div slot="modal-footer"> 
-       <template v-if="action === 'Deleting'">
-         <VButton @click="handleClose" text="Cancel"/>
-        <VButton class="button-delete"  @click="handleDelete" text="Delete"/>
-      </template>
-    </div>
+      <div slot="footer"> 
+        <template v-if="action === 'Deleting'">
+          <v-button
+            @click="handleClose"
+          >
+            Cancel
+          </v-button>
+          <v-button
+            class="button-delete"
+            @click="handleDelete"
+          >
+            Delete
+          </v-button>
+        </template>
+      </div>
     </Modal>
-      
   </ul>
-
- 
 </template>
 
 <script>
@@ -67,49 +71,61 @@ export default {
       item: {},
     }
   },
+  
+  async mounted (){
+    try {
+        const response = await fetch("/api/shop")
+        if (!response.ok) throw Error('Something went wrong!')
+        this.items = await response.json()
+    } catch (error) {
+      alert(error)
+        return
+    }
+    
+   
+  },
   methods: {
- 
-    async handleDelete () {
-      const oldDtata = [...this.items]
-      deleteData("shop", `${this.itemToDeleteId}`)
-        
-      const newData = oldDtata.filter(item => item.id !== this.itemToDeleteId)
+     async handleDelete () {
+      let response = await deleteData("shop", this.itemToDeleteId)
+    
+      if (typeof response !== 'string'){
+      const newData = this.items.filter(item => item.id !== this.itemToDeleteId)
       this.items = newData
       this.itemToDeleteId = null
       this.showModal = !this.showModal
+      } 
     },
     openDeleteWindow(e){
       this.action = "Deleting"
       this.showModal = !this.showModal
       this.itemToDeleteId = e
     },
-    async openEditWindow(e) {
-      this.itemToEditId = e
-      const response =  await fetch(`/api/shop/${e}`) 
-      const data = await response.json()
-      this.item = data
+    async openEditWindow(itemId) {
+      this.itemToEditId = itemId
+      let response
+
+      try {
+        response = await fetch(`/api/shop/${itemId}`)
+        if (!response.ok) throw Error('Something went wrong!')
+      } catch (error) {
+        alert(error)
+        return
+      }
+
+      this.item = await response.json()
       this.action = "Editing"
       this.showModal = !this.showModal
     },
     handleClose(){
       this.showModal = !this.showModal
     },
-    saveEditedItem(e){ 
-      const editedItemRemoved = [...this.items].filter(item => item.id !== e.id)
-      const newData = [...editedItemRemoved, e]
-  
-      this.items = newData
+    saveEditedItem(editedItem){ 
+      const editedItemRemoved = this.items.filter(item => item.id !== editedItem.id)
+      this.items = [...editedItemRemoved, editedItem]
     },
-  },
-  
-  async mounted (){
-    const response = await fetch("/api/shop")
-    const data = await response.json()
-    this.items = [...this.items, ...data]
   }
 }
 </script>
-
 
 <style scoped>
 .items-container {
@@ -131,6 +147,4 @@ export default {
 		grid-template-columns: repeat(4, 1fr);
 	}
 }
-
-
 </style>

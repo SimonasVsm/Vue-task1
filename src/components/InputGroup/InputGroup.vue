@@ -1,16 +1,15 @@
 <template>
   <div class="input-group">
     <label
-    v-if="labelText"
-    :id="labelId"
-    class="control"
-    >{{labelText}}<sup
-    v-if="required"
-    class="text-danger"
+      v-if="labelText"
+      :id="labelId"
+      class="control"
+    >{{ labelText }}<sup
+      v-if="required"
+      class="text-danger"
     >*</sup>
     </label>
-    <slot name="input" />
-  
+    <slot />
   </div>
 </template>
 

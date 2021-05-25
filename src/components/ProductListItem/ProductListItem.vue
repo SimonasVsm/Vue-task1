@@ -1,21 +1,38 @@
 <template>
-    <li :id="id" class="items-container__item">
-   <div class="photo">
-    <img
-      class="item"
-      :src="url"
-      alt="Shop item"
-      />
+  <li
+    :id="item.id"
+    class="items-container__item"
+  >
+    <div class="photo">
+      <img
+        class="item"
+        :src="item.url"
+        :alt="`${item.title} photo`"
+      >
     </div>
-  <div class="information">
-    <p class="description">{{title}}</p>
-    <p class="price">{{price}}</p>
-  </div>
-  <div class="action-buttons">
-    <VButton class="button-edit" @click="handleEdit" text="Edit"/>
-    <VButton class="button-delete" @click="handleDelete" text="Delete" />
-  </div>
-</li>
+    <div class="information">
+      <p class="description">
+        {{ item.title }}
+      </p>
+      <p class="price">
+        {{ item.price }}
+      </p>
+    </div>
+    <div class="action-buttons">
+      <v-button
+        class="button-edit"
+        @click="$emit('edit-item', item.id)"
+      >
+        Edit
+      </v-button>
+      <v-button
+        class="button-delete"
+        @click="$emit('delete-item', item.id)"
+      >
+        Delete
+      </v-button>
+    </div>
+  </li>
 </template>
 
 <script>
@@ -26,19 +43,8 @@ import VButton from "../VButton/VButton.vue"
 export default {
   components: { VButton },
   props: {
-    id: t.number,
-    url: t.string,
-    title: t.string, 
-    price: t.string,
+    item: t.object,
   },
-  methods: {
-    handleEdit(){
-      this.$emit("editing-item", this.id)
-    },
-    handleDelete(){
-      this.$emit("delete-item", this.id)
-    },
-  }
 }
 </script>
 

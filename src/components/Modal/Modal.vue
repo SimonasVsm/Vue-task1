@@ -1,60 +1,55 @@
 <template>
- <div class="overlay">
-  <div class="modal" id="exampleModal">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div id="modal-header" class="modal-header">
-        <VButton class="button-small" @click="handleClose" text="X"/>
-        <slot name="header"></slot>
-      </div>
-      <div id="modal-body" class="modal-body">
-        <slot name="modal-body"></slot>
-      </div>
-      <div id="modal-footer" class="modal-footer">
-        <slot name="modal-footer"></slot>
+  <div class="overlay">
+    <div
+      id="exampleModal"
+      class="modal"
+    >
+      <div
+        class="modal-dialog"
+        role="dialog"
+      >
+        <div class="modal-content">
+          <div
+            id="modal-header"
+            class="modal-header"
+          >
+            <v-button
+              class="button-small"
+              @click="$emit('close')"
+            >
+              X
+            </v-button>
+            <slot name="header" />
+          </div>
+          <div
+            id="modal-body"
+            class="modal-body"
+          >
+            <slot name="body" />
+          </div>
+          <div
+            id="modal-footer"
+            class="modal-footer"
+          >
+            <slot name="footer" />
+          </div>
+        </div>
       </div>
     </div>
   </div>
-</div>
- </div>
-   
 </template>
 
 <script>
-import t from "vue-types"
-
 import VButton from "../VButton/VButton.vue"
-
 
 export default {
   components: { VButton },
-  props: {
-    title: t.string,
-    buttonText: t.string,
-    initialTitle: t.string,
-    initialPrice: t.string,
-    initialUrl: t.string,
-    itemId: t.number,
-  },
-  data: function() {
-    return {
-      itemTitle: this.initialTitle,
-      itemPrice: this.initialPrice,
-      itemUrl: this.initialUrl
-    }
-  },
-
-  methods: {
-    handleClose(){
-      this.$emit("close-modal")
-    },
-  },
   mounted () {
     document.body.classList.add("fixed")
   },
   destroyed () {
     document.body.classList.remove("fixed")
-  }
+  },
 }
 </script>
 
