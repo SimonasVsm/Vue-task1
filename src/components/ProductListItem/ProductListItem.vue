@@ -41,7 +41,7 @@ import VButton from "../VButton/VButton.vue"
 
 
 export default {
-  components: { VButton },
+  components: {VButton },
   props: {
     item: t.object,
   },
