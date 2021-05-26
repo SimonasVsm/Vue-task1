@@ -7,12 +7,4 @@
   </button>
 </template>
 
-<script>
-import t from "vue-types"
 
-export default {
-  props: {
-    text: t.string,
-  }  
-}
-</script>

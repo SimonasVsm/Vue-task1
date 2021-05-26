@@ -4,17 +4,11 @@
       v-for="item in items" 
       :key="item.id"
       :item="item"
-    
       @delete-item="openDeleteWindow"
       @edit-item="openEditWindow"
-    />
+    /> 
     <Modal 
       v-if="showModal"
-      :initial-title="item.title"
-      :initial-price="item.price"
-      :initial-url="item.url"
-      :item-id="item.id"
-      :title="action"
       @close="handleClose"
     >
       <div slot="header">
@@ -60,7 +54,12 @@ import AddEditForm from "../AddEditForm/AddEditForm.vue"
 import {deleteData} from "../../api/apiCalls"
 
 export default {
-  components: { ProductListItem, Modal, VButton, "add-edit-form": AddEditForm },
+  components: {
+    ProductListItem, 
+    Modal, 
+    VButton, 
+    AddEditForm
+    },
   data() {
     return {
       items: [],
@@ -89,11 +88,10 @@ export default {
       let response = await deleteData("shop", this.itemToDeleteId)
     
       if (typeof response !== 'string'){
-      const newData = this.items.filter(item => item.id !== this.itemToDeleteId)
-      this.items = newData
+      this.items = this.items.filter(item => item.id !== this.itemToDeleteId)
       this.itemToDeleteId = null
       this.showModal = !this.showModal
-      } 
+      }
     },
     openDeleteWindow(e){
       this.action = "Deleting"
@@ -120,8 +118,8 @@ export default {
       this.showModal = !this.showModal
     },
     saveEditedItem(editedItem){ 
-      const editedItemRemoved = this.items.filter(item => item.id !== editedItem.id)
-      this.items = [...editedItemRemoved, editedItem]
+      const itemsWithoutEdited = this.items.filter(item => item.id !== editedItem.id)
+      this.items = [...itemsWithoutEdited, editedItem]
     },
   }
 }

@@ -5,48 +5,40 @@
         label-id="title"
         label-text="Title"
       >
-        <template
-          class="input-error-block"
+        <input
+          v-model="title"
+          v-validate="'required'"
+          class="input"
+          name="title"
+          placeholder="Enter the title"
         >
-          <input
-            v-model="title"
-            v-validate="'required'"
-            class="input"
-            name="title"
-            placeholder="Enter the title"
-          >
-          <span class="error-message">{{ errors.first('title') }}</span>
-        </template>
+        <span class="error-message">{{ errors.first('title') }}</span>
       </input-group>
       <input-group
         label-id="price"
         label-text="Price"
       >
-        <template>
-          <input
-            v-model="price"
-            v-validate="'required|decimal'"
-            class="input"
-            name="price"
-            placeholder="Enter the price"
-          >
-          <span class="error-message">{{ errors.first('price') }}</span>
-        </template>
+        <input
+          v-model="price"
+          v-validate="'required|decimal'"
+          class="input"
+          name="price"
+          placeholder="Enter the price"
+        >
+        <span class="error-message">{{ errors.first('price') }}</span>
       </input-group>
       <input-group
         label-id="url"
         label-text="Url"
       >
-        <template>
-          <input
-            v-model="url"
-            v-validate="'required'"
-            class="input"
-            name="url"
-            placeholder="Enter the url"
-          >
-          <span class="error-message"> {{ errors.first('url') }}</span>
-        </template>
+        <input
+          v-model="url"
+          v-validate="'required'"
+          class="input"
+          name="url"
+          placeholder="Enter the url"
+        >
+        <span class="error-message"> {{ errors.first('url') }}</span>
       </input-group>
     </form>
     <div class="form-buttons"> 
