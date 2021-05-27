@@ -4,6 +4,7 @@
       <button
         id="left-btn"
         class="carousel-control carousel-control--left"
+        @click="handlePrevious"
       >
         <img
           src="../../assets/icons/left.svg"
@@ -14,20 +15,24 @@
         id="carousel-images"
         class="carousel-images"
       >
-        <!-- Add slot here? -->
-        <CarouselItem 
-            
-          v-for="(photo, index) in photos" 
-          :id="photo.id"
+        <CarouselItem
+          v-for="(photo, index) in photos"
           :key="photo.id"
-          :title="photo.title"
+          :active="activeIndex"
           :index="index"
-          :url="photo.url"
+          :photo="photo"
+        />
+      
+        <CarouselItemsNavigation
+          :active="activeIndex"
+          :photos="photos"
+          @change-image="handleChange"
         />
       </div>
       <button
         id="right-btn"
         class="carousel-control carousel-control--right"
+        @click="handleNext"
       >
         <img
           src="../../assets/icons/right.svg"
@@ -46,19 +51,42 @@
 <script>
 import t from "vue-types"
 import CarouselItem from "../CarouselItem/CarouselItem.vue"
+import CarouselItemsNavigation from '../CarouselItemsNavigation/CarouselItemsNavigation.vue'
 
 export default {
-  components: { CarouselItem },
+  components: { CarouselItem, CarouselItemsNavigation},
   props: {
     photos: t.array
   },
-  data() {
+  data(){
     return {
-      items: []
+      activeIndex: 0
     }
   },
- 
-  
+  watch: {
+    photos(){
+      this.activeIndex = 0
+    }
+  },
+  methods: {
+    handleNext(){
+      if (this.activeIndex + 1 > this.photos.length - 1){
+        this.activeIndex = 0
+      } else {
+        this.activeIndex++
+      }
+    },
+    handlePrevious(){
+      if(this.activeIndex -1 < 0){
+        this.activeIndex = this.photos.length -1
+      } else {
+        this.activeIndex--
+      }
+    },
+    handleChange(index){
+      this.activeIndex = index
+    }
+  }
 }
 </script>
 

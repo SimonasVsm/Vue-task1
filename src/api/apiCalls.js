@@ -28,13 +28,33 @@ export async function putData(path, body) {
   }
 }
 
-export function postData(path, body) {
-  // TODO - implement error handling when add button added
-  return fetch(`/api/${path}`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body,
-  })
+export async function postData(path, body) {
+  try {
+    const response = await fetch(`/api/${path}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body,
+    })
+    if (!response.ok) throw Error("Something went wrong!")
+
+    return await response.json()
+  } catch (error) {
+    alert(error)
+    return error.message
+  }
+}
+
+export async function getData(path) {
+  try {
+    const response = await fetch(path)
+
+    if (!response.ok) throw Error("Something went wrong!")
+
+    return response
+  } catch (error) {
+    alert(error)
+    return error.message
+  }
 }

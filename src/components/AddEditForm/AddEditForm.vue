@@ -22,6 +22,7 @@
           v-model="price"
           v-validate="'required|decimal'"
           class="input"
+          type="number"
           name="price"
           placeholder="Enter the price"
         >
@@ -39,6 +40,17 @@
           placeholder="Enter the url"
         >
         <span class="error-message"> {{ errors.first('url') }}</span>
+      </input-group>
+      <input-group
+        label-id="checkbox"
+        label-text="Add to favorites?"
+      >
+        <input
+          v-model="favorite"
+          class="input"
+          name="url"
+          type="checkbox"
+        >
       </input-group>
     </form>
     <div class="form-buttons"> 
@@ -79,7 +91,7 @@
 <script>
 import t from "vue-types"
 
-import { putData } from "../../api/apiCalls"
+import { putData, postData } from "../../api/apiCalls"
 import InputGroup from "../InputGroup/InputGroup.vue"
 import VButton from "../VButton/VButton.vue"
 
@@ -99,6 +111,7 @@ export default {
       price: "",
       title: "",
       url: "",
+      favorite: "",
       formAction: "",
       buttonDisabled: false,
     }
@@ -118,11 +131,13 @@ export default {
           this.price = val.price
           this.title = val.title
           this.url = val.url
+          this.favorite = val.favorite
         } else {
           this.id = null
           this.price = null
           this.title = null
           this.url = null
+          this.favorite = null
         }
       }
     },
@@ -149,18 +164,29 @@ export default {
         title: this.title,
         price: this.price,
         url: this.url,
-        id: this.id
+        id: this.id,
+        favorite: this.favorite
       }
-
       const response = await putData(`shop/${this.id}`, JSON.stringify(newData))
       
-      if (typeof response === 'string') {
+      if (typeof response !== 'string') {
+        this.$emit("save-edit", response)
         this.$emit("close")
-      } else {
-      this.$emit("save-edit", response)
-      this.$emit("close")
+
+        if (this.item.favorite !== this.favorite) this.$emit('favorite-changed')
       }
     },
+    async handleSave(){
+      const newData = {
+        title: this.title,
+        price: this.price,
+        url: this.url,
+        favorite: this.favorite
+      }
+
+      const response = await postData(`shop/`, JSON.stringify(newData))
+      if (typeof response !== 'string') this.$emit('save-item', response)
+    }
   }
 }
 </script>

@@ -1,12 +1,15 @@
 <template>
   <!-- add active class based on index -->
-  <div class="carousel__image fade">
+  <div
+    class="image fade"
+    :class="index == active ? 'image-active' : ''"
+  >
     <p class="hero-text">
-      {{ title }}
+      {{ photo.title }}
     </p>
     <img
-      :src="url"
-      alt="Main image"
+      :src="photo.url"
+      :alt="photo.title"
       class="hero-image"
     >
     <a
@@ -21,18 +24,23 @@ import t from "vue-types"
 
 export default {
   props: {
-    id: t.number,
-    url: t.string,
-    title: t.string,
-    price: t.string,
-    featured: t.bool,
-    index: t.string
+    photo: t.object,
+    active: t.number,
+    index: t.number
   }
 }
 </script>
 
 
 <style scoped>
+ .image {
+  display: none;
+}
+
+.image-active {
+  display: block;
+} 
+
 .hero-image {
   width: 100%;
   max-height: 26rem;
@@ -47,5 +55,30 @@ export default {
   color: var(--white);
   transform: translate(-50%, -50%);
   opacity: 0.8;
+}
+
+.fade {
+	-webkit-animation-name: fade;
+	-webkit-animation-duration: 1s;
+	animation-name: fade;
+	animation-duration: 1s;
+}
+
+@-webkit-keyframes fade {
+	from {
+		opacity: 0.4;
+	}
+	to {
+		opacity: 1;
+	}
+}
+
+@keyframes fade {
+	from {
+		opacity: 0.4;
+	}
+	to {
+		opacity: 1;
+	}
 }
 </style>

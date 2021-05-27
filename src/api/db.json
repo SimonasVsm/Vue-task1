@@ -1,66 +1,42 @@
 {
   "shop": [
     {
-      "title": "VIenas astuoni",
+      "title": "simtas 100",
       "price": "8.99",
       "url": "https://placeimg.com/640/480/any/9",
-      "id": 9
-    },
-    {
-      "title": "qwewq",
-      "price": "123",
-      "url": "https://placeimg.com/640/480/any/12",
-      "id": 23
-    },
-    {
-      "title": "Title 12",
-      "price": "123",
-      "url": "https://placeimg.com/640/480/any/77",
-      "id": 24
+      "id": 9,
+      "favorite": true
     },
     {
       "title": "Testing edits",
       "price": "12",
       "url": "https://placeimg.com/640/480/any/41",
-      "id": 25
+      "id": 25,
+      "favorite": false
     },
     {
-      "title": "edit",
-      "price": "12",
-      "url": "https://placeimg.com/640/480/any/412",
-      "id": 26
-    },
-    {
-      "title": "EDIT",
-      "price": "1231",
-      "url": "https://placeimg.com/640/480/any/212",
-      "id": 31
-    },
-    {
-      "title": "ASD",
+      "title": "Saule",
       "price": "123",
       "url": "https://placeimg.com/640/480/any/77",
-      "id": 33
+      "id": 33,
+      "favorite": true
     },
     {
-      "title": "jekp",
+      "title": "jekp 100010201 012002",
       "price": "123",
       "url": "https://placeimg.com/640/480/any/412",
-      "id": 34
+      "id": 34,
+      "favorite": true
     },
     {
+      "favorite": false,
       "title": "lastestest",
       "price": "1233",
       "url": "https://placeimg.com/640/480/any/773",
       "id": 37
     },
     {
-      "title": "Tv",
-      "price": "250",
-      "url": "https://placeimg.com/640/480/any/tv",
-      "id": 38
-    },
-    {
+      "favorite": false,
       "title": "123",
       "price": "123",
       "url": "https://placeimg.com/640/480/any/123",
@@ -70,31 +46,41 @@
       "title": "Hap",
       "price": "123",
       "url": "https://placeimg.com/640/480/any/1233",
-      "id": 40
+      "id": 40,
+      "favorite": false
     },
     {
-      "title": "tata auto",
-      "price": "12312",
-      "url": "https://placeimg.com/640/480/any/421",
+      "title": "wewq",
+      "price": "1",
+      "url": "https://placeimg.com/640/480/any/4",
+      "favorite": false,
       "id": 41
     },
     {
-      "title": "tata",
+      "title": "Veikia Si",
       "price": "123",
-      "url": "https://placeimg.com/640/480/any/4re",
+      "url": "https://placeimg.com/640/480/any/212",
       "id": 42
     },
     {
-      "title": "para",
-      "price": "24",
-      "url": "https://placeimg.com/640/480/any/de",
+      "title": "Salavijas",
+      "price": "100",
+      "url": "https://placeimg.com/640/480/any/77",
       "id": 43
     },
     {
-      "title": "asdad",
-      "price": "12312",
-      "url": "https://placeimg.com/640/480/any/212",
+      "title": "taxi",
+      "price": "1000",
+      "url": "https://placeimg.com/640/480/any/77",
+      "favorite": true,
       "id": 44
+    },
+    {
+      "title": "Sutvarkyti stilius",
+      "price": "100",
+      "url": "https://placeimg.com/640/480/any/77",
+      "favorite": true,
+      "id": 45
     }
   ],
   "carousel": [
