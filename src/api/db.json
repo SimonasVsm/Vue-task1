@@ -75,29 +75,5 @@
       "url": "https://placeimg.com/640/480/any/77",
       "id": 46
     }
-  ],
-  "carousel": [
-    {
-      "title": "Title 1",
-      "price": 123,
-      "url": "https://placeimg.com/640/480/any/212",
-      "id": 1
-    },
-    {
-      "id": 2,
-      "title": "Carousel 2",
-      "url": "https://placeimg.com/640/480/any/2"
-    },
-    {
-      "id": 3,
-      "title": "Carousel 3",
-      "url": "https://placeimg.com/640/480/any/3"
-    },
-    {
-      "title": "Title 8",
-      "price": 120,
-      "url": "https://placeimg.com/640/480/any/212",
-      "id": 4
-    }
   ]
 }
