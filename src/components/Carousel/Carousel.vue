@@ -6,26 +6,22 @@
         class="carousel-control carousel-control--left"
         @click="handlePrevious"
       >
-        <img
-          src="../../assets/icons/left.svg"
-          alt="left arrow"
-        >
+        <left-arrow />
       </button>
       <div
         id="carousel-images"
         class="carousel-images"
       >
-        <CarouselItem
-          v-for="(photo, index) in photos"
-          :key="photo.id"
-          :active="activeIndex"
-          :index="index"
-          :photo="photo"
+        <carousel-item
+          v-for="(item, index) in carouselItems"
+          :key="item.id"
+          :is-active="index === activeIndex ? true : false"
+          :item="item"
         />
       
-        <CarouselItemsNavigation
-          :active="activeIndex"
-          :photos="photos"
+        <carousel-items-navigation
+          :active-index="activeIndex"
+          :carousel-items="carouselItems"
           @change-image="handleChange"
         />
       </div>
@@ -34,29 +30,29 @@
         class="carousel-control carousel-control--right"
         @click="handleNext"
       >
-        <img
-          src="../../assets/icons/right.svg"
-          alt="right arrow"
-        >
+        <right-arrow />
       </button>
-
-      <div
-        id="carouselNav"
-        class="carousel__nav"
-      />
     </div>
   </section>
 </template>
 
 <script>
 import t from "vue-types"
+
+import LeftArrow from '../../assets/icons/LeftArrow.vue'
+import RightArrow from '../../assets/icons/RightArrow.vue'
 import CarouselItem from "../CarouselItem/CarouselItem.vue"
 import CarouselItemsNavigation from '../CarouselItemsNavigation/CarouselItemsNavigation.vue'
 
 export default {
-  components: { CarouselItem, CarouselItemsNavigation},
+  components: { 
+    CarouselItem,
+    CarouselItemsNavigation,
+    LeftArrow,
+    RightArrow
+    },
   props: {
-    photos: t.array
+    carouselItems: t.array
   },
   data(){
     return {
@@ -64,13 +60,13 @@ export default {
     }
   },
   watch: {
-    photos(){
+    carouselItems(){
       this.activeIndex = 0
     }
   },
   methods: {
     handleNext(){
-      if (this.activeIndex + 1 > this.photos.length - 1){
+      if (this.activeIndex + 1 > this.carouselItems.length - 1){
         this.activeIndex = 0
       } else {
         this.activeIndex++
@@ -78,7 +74,7 @@ export default {
     },
     handlePrevious(){
       if(this.activeIndex -1 < 0){
-        this.activeIndex = this.photos.length -1
+        this.activeIndex = this.carouselItems.length -1
       } else {
         this.activeIndex--
       }

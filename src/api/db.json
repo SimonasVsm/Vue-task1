@@ -22,18 +22,11 @@
       "favorite": true
     },
     {
-      "title": "jekp 100010201 012002",
-      "price": "123",
-      "url": "https://placeimg.com/640/480/any/412",
-      "id": 34,
-      "favorite": true
-    },
-    {
-      "favorite": false,
       "title": "lastestest",
       "price": "1233",
       "url": "https://placeimg.com/640/480/any/773",
-      "id": 37
+      "id": 37,
+      "favorite": true
     },
     {
       "favorite": false,
@@ -63,24 +56,24 @@
       "id": 42
     },
     {
-      "title": "Salavijas",
-      "price": "100",
-      "url": "https://placeimg.com/640/480/any/77",
-      "id": 43
-    },
-    {
       "title": "taxi",
       "price": "1000",
       "url": "https://placeimg.com/640/480/any/77",
-      "favorite": true,
-      "id": 44
+      "id": 44,
+      "favorite": false
     },
     {
       "title": "Sutvarkyti stilius",
       "price": "100",
       "url": "https://placeimg.com/640/480/any/77",
-      "favorite": true,
-      "id": 45
+      "id": 45,
+      "favorite": false
+    },
+    {
+      "title": "Miskas",
+      "price": "100000000",
+      "url": "https://placeimg.com/640/480/any/77",
+      "id": 46
     }
   ],
   "carousel": [

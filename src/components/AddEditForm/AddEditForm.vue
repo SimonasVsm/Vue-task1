@@ -42,13 +42,13 @@
         <span class="error-message"> {{ errors.first('url') }}</span>
       </input-group>
       <input-group
-        label-id="checkbox"
+        label-id="addFavorite"
         label-text="Add to favorites?"
       >
         <input
           v-model="favorite"
           class="input"
-          name="url"
+          name="addFavorite"
           type="checkbox"
         >
       </input-group>

@@ -1,10 +1,10 @@
 <template>
   <div class="carousel-nav">
     <button
-      v-for="(photo, index) in photos"
-      :key="photo.id"
+      v-for="(item, index) in carouselItems"
+      :key="item.id"
       class="photo-indicator"
-      :class="index == active ? 'active' : ''"
+      :class="index == activeIndex ? 'active' : ''"
       @click="$emit('change-image', index)"
     />
   </div>
@@ -14,8 +14,8 @@
 import t from 'vue-types'
 export default {
   props: {
-    photos: t.array,
-    active: t.number
+    carouselItems: t.array,
+    activeIndex: t.number
   },
 }
 </script>

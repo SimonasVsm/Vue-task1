@@ -2,14 +2,14 @@
   <!-- add active class based on index -->
   <div
     class="image fade"
-    :class="index == active ? 'image-active' : ''"
+    :class="isActive ? 'image-active' : ''"
   >
     <p class="hero-text">
-      {{ photo.title }}
+      {{ item.title }}
     </p>
     <img
-      :src="photo.url"
-      :alt="photo.title"
+      :src="item.url"
+      :alt="item.title"
       class="hero-image"
     >
     <a
@@ -24,9 +24,8 @@ import t from "vue-types"
 
 export default {
   props: {
-    photo: t.object,
-    active: t.number,
-    index: t.number
+    item: t.object,
+    isActive: t.bool,
   }
 }
 </script>

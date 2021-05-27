@@ -12,17 +12,16 @@
       <div slot="header">
         <p>{{ action }}</p>
       </div>
-      <template slot="body">
-        <add-edit-form 
-          :item="item"
-          :action="action"
-          @close="showModal = !showModal"
-          @save-item="saveNewItem"
-        />
-      </template>
+      <add-edit-form 
+        slot="body"
+        :item="item"
+        :action="action"
+        @close="showModal = !showModal"
+        @save-item="saveNewItem"
+      />
     </Modal>
     <div class="body">
-      <Carousel :photos="carouselItems" />
+      <Carousel :carousel-items="carouselItems" />
       <product-list 
         :items="shopItems"
         @favorite-changed="getUpdatedCarouselItems"
@@ -63,10 +62,7 @@ export default {
     },
   },
   async mounted (){
-    // mounted and getUpdatedCarouselItems uses same logic should I create separate method?
-    const response = await getData('api/shop')
-
-    if (typeof response !== 'string') this.shopItems = await response.json()
+    this.getUpdatedCarouselItems()
   },
   methods: {
     async getUpdatedCarouselItems(){
