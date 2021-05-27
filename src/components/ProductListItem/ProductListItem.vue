@@ -39,32 +39,29 @@
 import t from "vue-types"
 import VButton from "../VButton/VButton.vue"
 
-
 export default {
-  components: {VButton },
+  components: { VButton },
   props: {
     item: t.object,
   },
 }
 </script>
 
-
 <style scoped>
 .items-container__item {
-  box-shadow: 0 1px 3px rgb(0 0 0 / 12%),
-   0 1px 2px rgb(0 0 0 / 24%);
-	min-height: 10rem;
-	min-width: 10rem;
-	object-fit: contain;
+  box-shadow: 0 1px 3px rgb(0 0 0 / 12%), 0 1px 2px rgb(0 0 0 / 24%);
+  min-height: 10rem;
+  min-width: 10rem;
+  object-fit: contain;
 }
 
 .item {
-	max-width: 100%;
+  max-width: 100%;
 }
 
 .information {
-	display: flex;
-	justify-content: space-around;
+  display: flex;
+  justify-content: space-around;
 }
 
 .action-buttons {
