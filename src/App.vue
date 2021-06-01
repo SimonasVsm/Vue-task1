@@ -1,17 +1,19 @@
 <template>
   <div>
-    <LandingPage />
+    <router-link
+      to="/"
+    >
+      Home
+    </router-link>
+    <router-link
+      to="/shop"
+    >
+      Shop
+    </router-link>
+    <hr>
+    <router-view />
   </div>
 </template>
 
-<script>
 
-
-import LandingPage from './pages/LandingPage.vue';
-export default {
-  components: {
-    LandingPage
-  },
-};
-</script>
 
