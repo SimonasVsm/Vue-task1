@@ -3,7 +3,6 @@ import VeeValidate from "vee-validate"
 
 import App from "./App.vue"
 import { store } from "./store/store"
-import { router } from "./router/router"
 import "./assets/global.css"
 
 Vue.use(VeeValidate, {
@@ -16,6 +15,5 @@ Vue.use(VeeValidate, {
 
 new Vue({
   render: (h) => h(App),
-  router,
   store,
 }).$mount("#app")

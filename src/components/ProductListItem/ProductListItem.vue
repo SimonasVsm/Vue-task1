@@ -1,40 +1,38 @@
 <template>
-  <router-link to="shop/1">
-    <li
-      :id="item.id"
-      class="items-container__item"
-    >
-      <div class="photo">
-        <img
-          class="item"
-          :src="item.url"
-          :alt="`${item.title} photo`"
-        >
-      </div>
-      <div class="information">
-        <p class="description">
-          {{ item.title }}
-        </p>
-        <p class="price">
-          {{ item.price }}
-        </p>
-      </div>
-      <div class="action-buttons">
-        <v-button
-          class="button-edit"
-          @click="$emit('edit-item', item.id)"
-        >
-          Edit
-        </v-button>
-        <v-button
-          class="button-delete"
-          @click="$emit('delete-item', item.id)"
-        >
-          Delete
-        </v-button>
-      </div>
-    </li>
-  </router-link>
+  <li
+    :id="item.id"
+    class="items-container__item"
+  >
+    <div class="photo">
+      <img
+        class="item"
+        :src="item.url"
+        :alt="`${item.title} photo`"
+      >
+    </div>
+    <div class="information">
+      <p class="description">
+        {{ item.title }}
+      </p>
+      <p class="price">
+        {{ item.price }}
+      </p>
+    </div>
+    <div class="action-buttons">
+      <v-button
+        class="button-edit"
+        @click="$emit('edit-item', item.id)"
+      >
+        Edit
+      </v-button>
+      <v-button
+        class="button-delete"
+        @click="$emit('delete-item', item.id)"
+      >
+        Delete
+      </v-button>
+    </div>
+  </li>
 </template>
 
 <script>
