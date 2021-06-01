@@ -23,7 +23,7 @@
     <div class="body">
       <Carousel :carousel-items="carouselItems" />
       <product-list 
-        :items="shopItems"
+        :items="shopItemsStore"
         @favorite-changed="getUpdatedCarouselItems"
         @save-edit="handleEdit"
         @delete-item="handleDelete"
@@ -33,6 +33,8 @@
 </template>
 
 <script>
+import {mapGetters, mapState} from 'vuex'
+
 import {getData} from '../api/apiCalls'
 import Carousel from "../components/Carousel/Carousel.vue"
 import Modal from '../components/Modal/Modal.vue'
@@ -57,12 +59,11 @@ export default {
     }
   },
   computed: {
-    carouselItems() {
-      return this.shopItems.filter(si => si.favorite === true)
-    },
+    ...mapState({shopItemsStore: 'shopItems'}),
+    ...mapGetters({carouselItems: 'carouselPhotos'}),
   },
   async mounted (){
-    this.getUpdatedCarouselItems()
+    this.$store.dispatch('getCarouselPhotos', {path: '/api/shop'})
   },
   methods: {
     async getUpdatedCarouselItems(){
@@ -71,15 +72,14 @@ export default {
     if (typeof response !== 'string') this.shopItems = await response.json()
     },
     saveNewItem(newItem){
-      this.shopItems.push(newItem)
+      this.$store.dispatch('addItem', newItem)
       this.showModal = !this.showModal
     },
     handleDelete(itemToDelete){
-      this.shopItems = this.shopItems.filter(item => item.id !== itemToDelete)
+      this.$store.dispatch('deleteItem', {id: itemToDelete})
     },
     handleEdit(itemEdited){
-      const itemsWithoutEdited = this.shopItems.filter(item => item.id !== itemEdited.id)
-      this.shopItems = [...itemsWithoutEdited, itemEdited]
+      this.$store.dispatch('editItem', itemEdited)
     }
   }
 }

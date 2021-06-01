@@ -5,13 +5,10 @@
 </template>
 
 <script>
-
-
-import LandingPage from './pages/LandingPage.vue';
+import LandingPage from './pages/LandingPage.vue'
 export default {
-  components: {
-    LandingPage
-  },
-};
+	components: { LandingPage },
+}
 </script>
+
 

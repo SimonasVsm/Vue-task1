@@ -8,7 +8,7 @@
       "favorite": true
     },
     {
-      "title": "Testing edits",
+      "title": "Testing editas",
       "price": "12",
       "url": "https://placeimg.com/640/480/any/41",
       "id": 25,
@@ -22,58 +22,34 @@
       "favorite": true
     },
     {
-      "title": "lastestest",
-      "price": "1233",
-      "url": "https://placeimg.com/640/480/any/773",
-      "id": 37,
-      "favorite": true
-    },
-    {
-      "favorite": false,
-      "title": "123",
+      "title": "asdasd",
       "price": "123",
-      "url": "https://placeimg.com/640/480/any/123",
-      "id": 39
-    },
-    {
-      "title": "Hap",
-      "price": "123",
-      "url": "https://placeimg.com/640/480/any/1233",
-      "id": 40,
-      "favorite": false
-    },
-    {
-      "title": "wewq",
-      "price": "1",
       "url": "https://placeimg.com/640/480/any/4",
-      "favorite": false,
-      "id": 41
-    },
+      "id": 34
+    }
+  ],
+  "carousel": [
     {
-      "title": "Veikia Si",
-      "price": "123",
+      "title": "Title 1",
+      "price": 123,
       "url": "https://placeimg.com/640/480/any/212",
-      "id": 42
+      "id": 1
     },
     {
-      "title": "taxi",
-      "price": "1000",
-      "url": "https://placeimg.com/640/480/any/77",
-      "id": 44,
-      "favorite": false
+      "id": 2,
+      "title": "Carousel 2",
+      "url": "https://placeimg.com/640/480/any/2"
     },
     {
-      "title": "Sutvarkyti stilius",
-      "price": "100",
-      "url": "https://placeimg.com/640/480/any/77",
-      "id": 45,
-      "favorite": false
+      "id": 3,
+      "title": "Carousel 3",
+      "url": "https://placeimg.com/640/480/any/3"
     },
     {
-      "title": "Miskas",
-      "price": "100000000",
-      "url": "https://placeimg.com/640/480/any/77",
-      "id": 46
+      "title": "Title 8",
+      "price": 120,
+      "url": "https://placeimg.com/640/480/any/212",
+      "id": 4
     }
   ]
 }
